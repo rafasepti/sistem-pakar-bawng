@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penyakit Bawang</title>
+    <title>Sistem Pakar Bawang</title>
     <!--
         For more customization options, we would advise
         you to build your TailwindCSS from the source.
@@ -55,7 +55,7 @@
                         <path d="M87 68.732l9.926 17.143 29.893-51.59L174.15 116H194L126.817 0z" />
                     </g>
                 </svg>
-                <span class="ml-3 text-l text-gray-800">Penyakit Bawang<span class="text-pink-500">.</span></span>
+                <span class="ml-3 text-l text-gray-800">SPB<span class="text-pink-500">.</span></span>
             </a>
 
             <nav id="nav"
