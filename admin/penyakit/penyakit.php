@@ -1,5 +1,6 @@
 <?php
 include('../../koneksi.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html x-data="data()" lang="en">
@@ -51,7 +52,7 @@ include('../../koneksi.php');
                     </h2>
                     <!-- CTA -->
                     <div
-                        class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+                        class="flex items-center justify-between p-4 mb-4 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
                         href="https://github.com/estevanmaito/windmill-dashboard">
                         <div class="flex items-center">
                             <svg
@@ -74,11 +75,11 @@ include('../../koneksi.php');
                     </div>
                     <?php
                     // Cek jika ada pesan sukses dalam session
-                    if (isset($_SESSION['tambah_success_message'])) {
-                        echo '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    if (isset($_SESSION['success_message'])) {
+                        echo '<div id="alert-box" class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                             <strong class="font-bold">Berhasil!</strong>
                             <span class="block sm:inline">' . $_SESSION['success_message'] . '</span>
-                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="closeAlert()">
                                 <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <title>Close</title>
                                     <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
@@ -87,7 +88,7 @@ include('../../koneksi.php');
                         </div>';
 
                         // Hapus pesan dari session setelah ditampilkan
-                        unset($_SESSION['tambah_success_message']);
+                        unset($_SESSION['success_message']);
                     }
                     ?>
 
@@ -203,6 +204,13 @@ include('../../koneksi.php');
             }
         });
     });
+</script>
+
+<script>
+    function closeAlert() {
+        const alertBox = document.getElementById('alert-box');
+        alertBox.style.display = 'none'; // Menyembunyikan elemen
+    }
 </script>
 
 </html>

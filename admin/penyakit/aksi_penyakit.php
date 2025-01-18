@@ -25,7 +25,7 @@ if (isset($_POST['tambah_penyakit'])) {
     $result = mysqli_query($konek_db, $query);
     if ($result) {
         // Set session untuk pesan sukses
-        $_SESSION['tambah_success_message'] = "Data berhasil ditambahkan!";
+        $_SESSION['success_message'] = "Data berhasil ditambahkan!";
     
         // Redirect ke halaman lain
         header('Location: penyakit.php');
@@ -45,8 +45,11 @@ if (isset($_POST['edit_penyakit'])) {
     //echo $query;
     $result = mysqli_query($konek_db, $query);
     if ($result) {
-        echo '<script language="javascript">';
-        header('location:penyakit.php');
-        echo '</script>';
+       // Set session untuk pesan sukses
+       $_SESSION['success_message'] = "Data berhasil diubah!";
+    
+       // Redirect ke halaman lain
+       header('Location: penyakit.php');
+       exit();
     }
 }
