@@ -6,7 +6,7 @@ $projectFolder = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'));
 $rootFolder = '/' . $projectFolder[0] . '/';
 
 // Definisikan BASE_URL secara dinamis
-define('BASE_URL', ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https" : "http") . 
+define('BASE_URL', ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https" : "http") .
     "://" . $_SERVER['HTTP_HOST'] . $rootFolder);
 
 $currentUrl = $_SERVER['REQUEST_URI'];
@@ -69,9 +69,12 @@ $currentUrl = $_SERVER['REQUEST_URI'];
                 </a>
             </li>
             <li class="relative px-6 py-3">
+                <?php if (strpos($currentUrl, 'gejala.php') !== false): ?>
+                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                <?php endif; ?>
                 <a
-                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    href="cards.html">
+                    class="inline-flex items-center w-full text-sm font-semibold <?php echo (strpos($currentUrl, 'gejala.php') !== false) ? 'text-gray-800' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    href="<?php echo BASE_URL; ?>admin/gejala/gejala.php">
                     <svg xmlns="http://www.w3.org/2000/svg"
                         class="w-5 h-5"
                         aria-hidden="true"
