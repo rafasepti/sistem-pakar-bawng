@@ -28,12 +28,12 @@
         class="flex h-screen bg-gray-50 dark:bg-gray-900"
         :class="{ 'overflow-hidden': isSideMenuOpen }">
         <!-- Desktop sidebar -->
-        <?php include ('component/sidebar_desktop.php') ?>
+        <?php include('component/sidebar_desktop.php') ?>
         <!-- Mobile sidebar -->
         <!-- Backdrop -->
-       <?php include ('component/sidebar_mobile.php') ?>
+        <?php include('component/sidebar_mobile.php') ?>
         <div class="flex flex-col flex-1 w-full">
-            <?php include ('component/header.php') ?>
+            <?php include('component/header.php') ?>
             <main class="h-full overflow-y-auto">
                 <div class="container px-6 mx-auto grid">
                     <h2
@@ -41,7 +41,7 @@
                         Dashboard
                     </h2>
                     <!-- CTA -->
-                    <a
+                    <div
                         class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
                         href="https://github.com/estevanmaito/windmill-dashboard">
                         <div class="flex items-center">
@@ -54,8 +54,15 @@
                             </svg>
                             <span>Star this project on GitHub</span>
                         </div>
-                        <span>View more &RightArrow;</span>
-                    </a>
+                        <a class="flex items-center space-x-2 px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" href="tambah_penyakit.php">
+                            <!-- Ikon "+" -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                            <!-- Teks -->
+                            <span>Tambah Data</span>
+                        </a>
+                    </div>
                     <!-- Cards -->
                     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                         <!-- Card -->
