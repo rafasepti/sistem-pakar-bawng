@@ -1,3 +1,18 @@
+<?php
+// Ambil path dari URL
+$projectFolder = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'));
+
+// Pastikan nama folder proyek ada di level pertama (contoh: sistem_pakar_bawang)
+$rootFolder = '/' . $projectFolder[0] . '/';
+
+// Definisikan BASE_URL secara dinamis
+define('BASE_URL', ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https" : "http") . 
+    "://" . $_SERVER['HTTP_HOST'] . $rootFolder);
+
+$currentUrl = $_SERVER['REQUEST_URI'];
+?>
+
+
 <aside
     class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
     <div class="py-4 text-gray-500 dark:text-gray-400">
@@ -8,12 +23,12 @@
         </a>
         <ul class="mt-6">
             <li class="relative px-6 py-3">
-                <span
-                    class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
-                    aria-hidden="true"></span>
+                <?php if (strpos($currentUrl, 'homeadmin.php') !== false): ?>
+                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                <?php endif; ?>
                 <a
-                    class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                    href="homeadmin.php">
+                    class="inline-flex items-center w-full text-sm font-semibold <?php echo (strpos($currentUrl, 'homeadmin.php') !== false) ? 'text-gray-800' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                    href="<?php echo BASE_URL; ?>admin/homeadmin.php">
                     <svg
                         class="w-5 h-5"
                         aria-hidden="true"
@@ -32,9 +47,12 @@
         </ul>
         <ul>
             <li class="relative px-6 py-3">
+                <?php if (strpos($currentUrl, 'penyakit.php') !== false): ?>
+                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                <?php endif; ?>
                 <a
-                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    href="penyakit.php">
+                    class="inline-flex items-center w-full text-sm font-semibold <?php echo (strpos($currentUrl, 'penyakit.php') !== false) ? 'text-gray-800' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    href="<?php echo BASE_URL; ?>admin/penyakit/penyakit.php">
                     <svg
                         class="w-5 h-5"
                         aria-hidden="true"

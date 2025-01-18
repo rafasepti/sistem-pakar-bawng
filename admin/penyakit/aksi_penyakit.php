@@ -24,8 +24,29 @@ if (isset($_POST['tambah_penyakit'])) {
     ";
     $result = mysqli_query($konek_db, $query);
     if ($result) {
+        // Set session untuk pesan sukses
+        $_SESSION['tambah_success_message'] = "Data berhasil ditambahkan!";
+    
+        // Redirect ke halaman lain
+        header('Location: penyakit.php');
+        exit();
+    }
+} 
+
+if (isset($_POST['edit_penyakit'])) {
+    $query = "UPDATE penyakit SET
+    namapenyakit='$namapenyakit',
+    kulturteknis='$kulturteknis',
+    fisikmekanis='$fisikmekanis',
+    kimiawi='$kimiawi',
+    hayati='$hayati'
+    WHERE idpenyakit = '$idpenyakit'
+    ";
+    //echo $query;
+    $result = mysqli_query($konek_db, $query);
+    if ($result) {
         echo '<script language="javascript">';
         header('location:penyakit.php');
         echo '</script>';
     }
-} 
+}

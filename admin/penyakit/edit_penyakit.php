@@ -48,7 +48,7 @@ include('../../koneksi.php');
                 <div class="container px-6 mx-auto grid">
                     <h2
                         class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                        Tambah Data
+                        Edit Data
                     </h2>
                     <!-- CTA -->
                     <div
@@ -66,27 +66,10 @@ include('../../koneksi.php');
                         </div>
                     </div>
                     <?php
-                    // Ambil ID terakhir dari tabel
-                    $sql = "SELECT idpenyakit FROM penyakit ORDER BY idpenyakit DESC LIMIT 1";
+                    $id = $_GET['id'];
+                    $sql = "SELECT * FROM penyakit WHERE idpenyakit = '$id'";
                     $result = $konek_db->query($sql);
-
-                    // Cek apakah ada data
-                    if ($result->num_rows > 0) {
-                        $row = $result->fetch_assoc();
-                        $lastId = $row['idpenyakit']; // Contoh: "P001"
-
-                        // Ambil angka dari ID terakhir
-                        $lastNumber = (int) substr($lastId, 1); // Hasil: 1
-
-                        // Tambahkan 1 ke angka terakhir
-                        $newNumber = $lastNumber + 1; // Hasil: 2
-
-                        // Format ulang menjadi P002
-                        $newId = "P" . str_pad($newNumber, 3, "0", STR_PAD_LEFT);
-                    } else {
-                        // Jika tidak ada data, mulai dari P001
-                        $newId = "P001";
-                    }
+                    while ($data = mysqli_fetch_array($result)) {
                     ?>
                     <div
                         class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -96,7 +79,7 @@ include('../../koneksi.php');
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                     name="idpenyakit" id="idpenyakit"
-                                    placeholder="Jane Doe" readonly value="<?php echo $newId ?>" />
+                                    placeholder="Jane Doe" readonly value="<?php echo $data[0] ?>" />
                             </label>
 
                             <label class="block mt-4 text-sm">
@@ -108,7 +91,7 @@ include('../../koneksi.php');
                                     name="namapenyakit"
                                     id="namapenyakit"
                                     required
-                                    data-error="Nama penyakit wajib diisi." />
+                                    data-error="Nama penyakit wajib diisi." value="<?php echo $data[1] ?>" />
                                     <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                             </label>
                             <label class="block mt-4 text-sm">
@@ -119,7 +102,7 @@ include('../../koneksi.php');
                                     placeholder="isi kultur teknis"
                                     name="kulturteknis" id="kulturteknis"
                                     required data-error="Kultur Teknis wajib diisi."
-                                ></textarea>
+                                ><?php echo $data[3] ?></textarea>
                                 <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                             </label>
                             <label class="block mt-4 text-sm">
@@ -129,7 +112,7 @@ include('../../koneksi.php');
                                     rows="3"
                                     placeholder="isi fisik mekanis"
                                     name="fisikmekanis" id="fisikmekanis" required data-error="Fisik Mekanis wajib diisi."
-                                ></textarea>
+                                ><?php echo $data[4] ?></textarea>
                                 <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                             </label>
                             <label class="block mt-4 text-sm">
@@ -139,7 +122,7 @@ include('../../koneksi.php');
                                     rows="3"
                                     placeholder="isi kimiawi"
                                     name="kimiawi" id="kimiawi" required data-error="Kimiawi wajib diisi."
-                                ></textarea>
+                                ><?php echo $data[5] ?></textarea>
                                 <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                             </label>
                             <label class="block mt-4 text-sm">
@@ -149,17 +132,19 @@ include('../../koneksi.php');
                                     rows="3"
                                     placeholder="isi hayati"
                                     name="hayati" id="hayati" required data-error="Hayati wajib diisi."
-                                ></textarea>
+                                ><?php echo $data[6] ?></textarea>
                                 <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                             </label>
                             <div class="flex justify-end">
-                                <button type="submit" name="tambah_penyakit" class="px-4 py-2 mt-6 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                <button type="submit" name="edit_penyakit" class="px-4 py-2 mt-6 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                     Simpan
                                 </button>
                             </div>
                         </form>
                     </div>
-
+                    <?php
+                    }
+                    ?>
                 </div>
             </main>
         </div>
@@ -171,7 +156,7 @@ include('../../koneksi.php');
             const input = $(e.relatedTarget);
             const errorMessage = input.attr('data-error');
             
-            // Tambahkan styling error
+            // Tambahkan styling error pada input atau textarea
             input.addClass('border-red-600 focus:border-red-400 focus:shadow-outline-red');
             
             // Cari elemen <span> yang sesuai dengan input berdasarkan name atau id
@@ -180,7 +165,7 @@ include('../../koneksi.php');
         }).on('valid.bs.validator', function (e) {
             const input = $(e.relatedTarget);
             
-            // Hapus styling error
+            // Hapus styling error dari input atau textarea
             input.removeClass('border-red-600 focus:border-red-400 focus:shadow-outline-red');
             
             // Sembunyikan pesan error jika valid
@@ -189,4 +174,5 @@ include('../../koneksi.php');
         });
     });
 </script>
+
 </html>

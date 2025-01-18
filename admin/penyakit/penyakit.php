@@ -7,7 +7,7 @@ include('../../koneksi.php');
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Windmill Dashboard</title>
+    <title>SBP</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
@@ -73,6 +73,25 @@ include('../../koneksi.php');
                         </a>
                     </div>
                     <?php
+                    // Cek jika ada pesan sukses dalam session
+                    if (isset($_SESSION['tambah_success_message'])) {
+                        echo '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                            <strong class="font-bold">Berhasil!</strong>
+                            <span class="block sm:inline">' . $_SESSION['success_message'] . '</span>
+                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <title>Close</title>
+                                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/>
+                                </svg>
+                            </span>
+                        </div>';
+
+                        // Hapus pesan dari session setelah ditampilkan
+                        unset($_SESSION['tambah_success_message']);
+                    }
+                    ?>
+
+                    <?php
                     $queri = "Select * From penyakit where jenistanaman = 'Bawang'";
                     $hasil = mysqli_query($konek_db, $queri);
                     $id = 0;
@@ -98,20 +117,20 @@ include('../../koneksi.php');
                                     ?>
                                         <tr class="text-gray-700 dark:text-gray-400">
                                             <td class="px-4 py-3 text-sm">
-                                               <?php echo $id ?>
+                                                <?php echo $id ?>
                                             </td>
                                             <td class="px-4 py-3 text-sm">
-                                               <?php echo  $data[0] ?>
+                                                <?php echo  $data[0] ?>
                                             </td>
                                             <td class="px-4 py-3 text-sm">
-                                               <?php echo $data[1] ?>
+                                                <?php echo $data[1] ?>
                                             </td>
                                             <td class="px-4 py-3 text-sm">
-                                               <?php echo $data[2] ?>
+                                                <?php echo $data[2] ?>
                                             </td>
                                             <td class="px-4 py-3">
                                                 <div class="flex items-center space-x-4 text-sm">
-                                                <button
+                                                    <a href="detail_penyakit.php?id=<?php echo $data[0]; ?>"
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                                         aria-label="Edit">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -122,8 +141,8 @@ include('../../koneksi.php');
                                                             viewBox="0 0 20 20">
                                                             <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                                                         </svg>
-                                                    </button>
-                                                    <button
+                                                    </a>
+                                                    <a href="edit_penyakit.php?id=<?php echo $data[0]; ?>"
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                                                         aria-label="Edit">
                                                         <svg
@@ -134,10 +153,11 @@ include('../../koneksi.php');
                                                             <path
                                                                 d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                                                         </svg>
-                                                    </button>
-                                                    <button
+                                                    </a>
+                                                    <a href="hapus_penyakit.php?id=<?php echo $data[0]; ?>"
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                                        aria-label="Delete">
+                                                        aria-label="Delete"
+                                                        onclick="return confirm('Yakin ingin menghapus data ini?');">
                                                         <svg
                                                             class="w-5 h-5"
                                                             aria-hidden="true"
@@ -148,7 +168,7 @@ include('../../koneksi.php');
                                                                 d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                                 clip-rule="evenodd"></path>
                                                         </svg>
-                                                    </button>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -168,10 +188,10 @@ include('../../koneksi.php');
     $(document).ready(function() {
         $('#myTable').DataTable({
             // Opsi tambahan untuk DataTables
-            paging: true,       // Menambahkan pagination
-            searching: true,    // Menambahkan pencarian
-            ordering: true,     // Menambahkan pengurutan kolom
-            info: true,         // Menampilkan informasi tabel
+            paging: true, // Menambahkan pagination
+            searching: true, // Menambahkan pencarian
+            ordering: true, // Menambahkan pengurutan kolom
+            info: true, // Menampilkan informasi tabel
             language: {
                 search: "Cari:", // Mengubah label pencarian
                 lengthMenu: "Tampilkan _MENU_ data per halaman",
