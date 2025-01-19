@@ -139,11 +139,11 @@
                 <p class="pr-0 mb-8 text-base text-gray-600 sm:text-lg xl:text-xl lg:pr-20">Penting bagi petani untuk mengenali gejala-gejala penyakit ini agar dapat mengambil tindakan pencegahan dan pengendalian yang tepat.</p>
                 <div x-data="{ isModalOpen: false }">
                     <!-- Tombol untuk membuka modal -->
-                    <button
-                        @click="isModalOpen = true"
+                    <a
+                        href="login.php"
                         class="relative self-start inline-block w-auto px-8 py-4 mx-auto mt-0 text-base font-bold text-white bg-indigo-600 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 fold-bold lg:mx-0">
                         Login Sekarang!
-                    </button>
+                    </a>
 
                     <!-- Modal backdrop -->
                     <div
