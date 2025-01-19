@@ -72,10 +72,20 @@
 
             <div
                 class="absolute left-0 flex-col items-center justify-center hidden w-full pb-8 mt-48 border-b border-gray-200 md:relative md:w-auto md:bg-transparent md:border-none md:mt-0 md:flex-row md:p-0 md:items-end md:flex md:justify-between">
-                <a href="login.php"
-                    class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">Login</a>
-                <a href="#_"
-                    class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">Register</a>
+                <?php
+                // Mulai session
+                session_start();
+
+                // Contoh pengecekan apakah sesi 'user' ada
+                if (isset($_SESSION['login_user'])) {
+                    // Jika user sudah login, tampilkan tombol logout
+                    echo '<a href="admin/logout.php" class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">Logout</a>';
+                } else {
+                    // Jika user belum login, tampilkan tombol login dan register
+                    echo '<a href="login.php" class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">Login</a>';
+                    echo '<a href="register.php" class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">Register</a>';
+                }
+                ?>
                 <svg class="absolute top-0 left-0 hidden w-screen max-w-3xl -mt-64 -ml-12 lg:block"
                     viewBox="0 0 818 815" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <defs>
@@ -139,12 +149,16 @@
                 <p class="pr-0 mb-8 text-base text-gray-600 sm:text-lg xl:text-xl lg:pr-20">Penting bagi petani untuk mengenali gejala-gejala penyakit ini agar dapat mengambil tindakan pencegahan dan pengendalian yang tepat.</p>
                 <div x-data="{ isModalOpen: false }">
                     <!-- Tombol untuk membuka modal -->
-                    <a
+                    <?php
+                    if (!isset($_SESSION['login_user'])) {
+                        // Jika user sudah login, tampilkan tombol logout
+                        echo '<a
                         href="login.php"
                         class="relative self-start inline-block w-auto px-8 py-4 mx-auto mt-0 text-base font-bold text-white bg-indigo-600 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 fold-bold lg:mx-0">
                         Login Sekarang!
-                    </a>
-
+                    </a>';
+                    }  
+                    ?>
                     <!-- Modal backdrop -->
                     <div
                         x-show="isModalOpen"

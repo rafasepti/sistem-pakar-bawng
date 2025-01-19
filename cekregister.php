@@ -26,7 +26,7 @@ if ($cek > 0) {
         session_start();
         $_SESSION['login_user'] = $username;
         $_SESSION['level'] = "user";
-        header('location:homeuser.php');
+        header('location:index.php');
         echo '</script>';
     }
 }
