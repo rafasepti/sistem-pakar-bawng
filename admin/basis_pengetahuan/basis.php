@@ -110,7 +110,7 @@ session_start();
                     $hasil = mysqli_query($konek_db, $query);
                     
                     // Fungsi pembatasan kata (panggil di sini)
-                    function batasi_kata($string, $max_kata = 10) {
+                    function batasi_kata($string, $max_kata = 5) {
                         $kata = explode(' ', $string);
                         if (count($kata) > $max_kata) {
                             $kata = array_slice($kata, 0, $max_kata);
@@ -137,7 +137,7 @@ session_start();
                                     <?php
                                     while ($data = mysqli_fetch_array($hasil)) {
                                         $id++;
-                                        $gejala_terbatas = batasi_kata($data['daftar_gejala'], 10);
+                                        $gejala_terbatas = batasi_kata($data['daftar_gejala'], 5);
                                     ?>
                                         <tr class="text-gray-700 dark:text-gray-400">
                                             <td class="px-4 py-3 text-sm">
