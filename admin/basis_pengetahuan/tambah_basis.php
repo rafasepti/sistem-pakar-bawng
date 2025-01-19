@@ -86,6 +86,7 @@ include('../../koneksi.php');
                             <h6
                                 class="mb-2 mt-4 text-l font-semibold text-gray-600 dark:text-gray-300">
                                 Gejala
+                                <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                             </h6>
                             <div
                                 class="mt-4 min-w-0 bg-white rounded-lg shadow-xs border border-gray-300 dark:bg-gray-800">
@@ -243,6 +244,16 @@ include('../../koneksi.php');
             // Sembunyikan pesan error jika valid
             const errorElement = input.siblings('span');
             errorElement.addClass('hidden');
+        });
+        $('#formBasis').on('submit', function (e) {
+            let checked = $('input[name="gejala[]"]:checked').length;
+
+            if (checked === 0) {
+                e.preventDefault();
+                $('.help-block').text('Silakan pilih minimal satu gejala.');
+            } else {
+                $('.help-block').text(''); // Kosongkan pesan jika validasi lulus
+            }
         });
     });
 </script>
