@@ -107,7 +107,7 @@ include('../../koneksi.php');
                                     <option <?php echo ($data[2] == 'Batang') ? 'selected' : ''; ?>>Batang</option>
                                     <option <?php echo ($data[2] == 'Daun') ? 'selected' : ''; ?>>Daun</option>
                                     <option <?php echo ($data[2] == 'Bunga') ? 'selected' : ''; ?>>Bunga</option>
-                                    <option <?php echo ($data[2] == 'Buah') ? 'selected' : ''; ?>>Buah</option>
+                                    <option <?php echo ($data[2] == 'Buah/Umbi') ? 'selected' : ''; ?>>Buah/Umbi</option>
                                 </select>
                                 <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                             </label>

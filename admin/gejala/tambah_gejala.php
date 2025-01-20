@@ -124,7 +124,7 @@ include('../../koneksi.php');
                                     <option>Batang</option>
                                     <option>Daun</option>
                                     <option>Bunga</option>
-                                    <option>Buah</option>
+                                    <option>Buah/Umbi</option>
                                 </select>
                                 <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                             </label>
