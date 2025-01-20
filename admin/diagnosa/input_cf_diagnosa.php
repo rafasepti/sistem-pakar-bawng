@@ -39,7 +39,7 @@ session_start();
         <!-- Backdrop -->
         <?php include('../component/sidebar_mobile.php') ?>
         <div class="flex flex-col flex-1 w-full">
-            <?php //include('../component/header.php') 
+            <?php include('../component/header.php') 
             ?>
             <main class="h-full overflow-y-auto">
                 <div class="container px-6 mx-auto grid">
@@ -93,14 +93,13 @@ session_start();
                                                 <p>Ragu-ragu</p>
                                             </label>
                                         </div>
+                                        <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                                     </div>
-
                                 </div>
                             <?php
                             }
                             ?>
                         </div>
-                        <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                         <div class="flex justify-end">
                             <button onclick="return confirm('Apakah Gejala Sudah Benar?');" type="submit" name="cek_penyakit" class="px-4 py-2 mt-6 mb-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                 Cek Penyakit
