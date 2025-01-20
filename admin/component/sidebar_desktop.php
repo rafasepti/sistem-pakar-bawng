@@ -111,9 +111,12 @@ $currentUrl = $_SERVER['REQUEST_URI'];
                 </a>
             </li>
             <li class="relative px-6 py-3">
+                <?php if (strpos($currentUrl, 'diagnosa_penyakit.php') !== false): ?>
+                    <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                <?php endif; ?>
                 <a
-                    class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    href="buttons.html">
+                    class="inline-flex items-center w-full text-sm font-semibold <?php echo (strpos($currentUrl, 'diagnosa_penyakit.php') !== false) ? 'text-gray-800' : ''; ?> transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    href="<?php echo BASE_URL; ?>admin/diagnosa/diagnosa_penyakit.php">
                     <svg
                         class="w-5 h-5"
                         aria-hidden="true"
