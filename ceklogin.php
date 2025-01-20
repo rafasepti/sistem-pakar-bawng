@@ -17,14 +17,14 @@ if ($cek > 0) {
     $data = mysqli_fetch_assoc($user);
     // cek jika user login sebagai admin
     if ($data['level'] == "admin") {
-
         // buat session login dan username
         $_SESSION['login_user'] = $username;
+        $_SESSION['iduser'] = $data['iduser'];
         $_SESSION['level'] = "admin";
         header('location:admin/homeadmin.php');
     } else if ($data['level'] == "user") {
-
         $_SESSION['login_user'] = $username;
+        $_SESSION['id'] = $user['id'];
         $_SESSION['level'] = "user";
         header('location:index.php');
     }

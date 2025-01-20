@@ -84,13 +84,14 @@ include('../../koneksi.php');
                         </div>
 
                     </div>
-                    <form id="formDiagnosa" data-toggle="validator" action="aksi_basis.php" method="POST" role="form">
+                    <form id="formDiagnosa" data-toggle="validator" action="aksi_diagnosa.php" method="POST" role="form">
                         <div id="gejalaContainer" class="mt-4">
                             <!-- Grup gejala akan dimuat dinamis -->
                         </div>
+                        <span class="text-xs text-red-600 help-block with-errors dark:text-red-400"></span>
                         <div class="flex justify-end">
-                            <button type="submit" name="cek_penyakit" class="px-4 py-2 mt-6 mb-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                                Cek Penyakit
+                            <button onclick="return confirm('Apakah Gejala Sudah Benar?');" type="submit" name="selanjutnya" class="px-4 py-2 mt-6 mb-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                Selanjutnya
                             </button>
                         </div>
                     </form>
