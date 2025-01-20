@@ -85,8 +85,11 @@ include('../../koneksi.php');
                             penyakit p ON bp.idpenyakit = p.idpenyakit
                         INNER JOIN 
                             gejala g ON bp.idgejala = g.idgejala
+                        WHERE p.idpenyakit = '$id'
                         GROUP BY 
-                            p.idpenyakit;";
+                            p.idpenyakit;
+                        
+                            ";
                     $result = mysqli_query($konek_db, $sql);
 
                     while ($data = $result->fetch_assoc()) {
@@ -181,7 +184,7 @@ include('../../koneksi.php');
                                     </h4>
                                     <div class="p-4 dark:text-gray-400">
                                         <div class="grid grid-cols-3 gap-2"> <!-- Atur grid dan jarak antar checkbox -->
-                                        <?php
+                                            <?php
                                             // Panggil fungsi untuk daerah 'batang'
                                             tampilkanGejala('daun', 'Bawang', $gejala_array, $konek_db);
                                             ?>
@@ -224,7 +227,7 @@ include('../../koneksi.php');
                                     </h4>
                                     <div class="p-4 dark:text-gray-400">
                                         <div class="grid grid-cols-3 gap-2"> <!-- Atur grid dan jarak antar checkbox -->
-                                        <?php
+                                            <?php
                                             // Panggil fungsi untuk daerah 'batang'
                                             tampilkanGejala('biji', 'Bawang', $gejala_array, $konek_db);
                                             ?>

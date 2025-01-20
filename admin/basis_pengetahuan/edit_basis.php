@@ -85,6 +85,7 @@ include('../../koneksi.php');
                             penyakit p ON bp.idpenyakit = p.idpenyakit
                         INNER JOIN 
                             gejala g ON bp.idgejala = g.idgejala
+                        WHERE p.idpenyakit = '$id'
                         GROUP BY 
                             p.idpenyakit;";
                     $result = mysqli_query($konek_db, $sql);
