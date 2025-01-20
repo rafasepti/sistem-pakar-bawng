@@ -29,7 +29,7 @@
                         aria-haspopup="true">
                         <img
                             class="object-cover w-8 h-8 rounded-full"
-                            src="../../img/user_icon.png"
+                            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                             alt=""
                             aria-hidden="true" />
                     </button>
